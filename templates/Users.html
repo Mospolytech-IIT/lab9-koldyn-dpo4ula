@@ -1,0 +1,53 @@
+<h1>Пользователи</h1>
+
+<style>
+  p {
+    color: 000000;
+    font-weight: normal
+    font-size: medium;
+  }
+  code {
+    font-size: xxx-large;
+    font-weight: bold;
+  }
+</style>
+
+<form action="/users/new" method="get">
+    <input type="submit" value="Создать нового пользователя">
+</form>
+
+<table>
+    <tr>
+        <th>Имя пользователя</th>
+        <th></th>
+        <th>Информация</th>
+    </tr>
+{% for user in users%}
+    <tr>
+        <th style="color : blue"><code>{{user.username}}</code></th>
+        <th>
+            <form action="/posts" method="get">
+                <input hidden="hidden" name="user_id" value={{user.id}}>
+                <input hidden="hidden" name="username" value={{user.username}}>
+                <input type="submit" value="Публикации">
+            </form>
+        </th>
+        <th>
+            <p style="black">Email:{{user.email}}</p>
+            <p style="black">Пароль:{{user.password}}</p>
+        </th>
+        <th>
+            <form action="/users/edit" method="get">
+                <input hidden="hidden" name="user_id" value={{user.id}}>
+                <input type="submit" value="Изменить данные">
+            </form>
+            <form action="/users/delete" method="get">
+                <input hidden="hidden" name="user_id" value={{user.id}}>
+                <input type="submit" value="Удалить пользователя">
+            </form>
+        </th>
+    </tr>
+
+{% endfor %}
+</table>
+<hr>

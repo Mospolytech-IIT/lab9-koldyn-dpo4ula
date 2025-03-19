@@ -1,0 +1,48 @@
+<h1>{{"Публикации пользователя " + user.username}}</h1>
+
+<style>
+  p {
+    color: 000000;
+    font-weight: normal
+    font-size: medium;
+  }
+  code {
+    font-size: xxx-large;
+    font-weight: bold;
+  }
+</style>
+
+<form action="/users" method="get">
+    <input type="submit" value="<">
+</form><form action="/posts/new" method="get">
+    <input hidden="hidden" name="user_id" value={{user.id}}>
+    <input type="submit" value="Создать публикацию">
+</form>
+<table>
+    <tr>
+        <th>Имя пользователя</th>
+        <th></th>
+        <th>Информация</th>
+    </tr>
+{% for post in posts%}
+    <tr>
+        <th style="color : blue"><code>{{post.title}}</code></th>
+        <th>
+            <p style="black">{{post.content}}</p>
+        </th>
+        <th>
+            <form action="posts/edit" method="get">
+                <input hidden="hidden" name="post_id" value={{post.id}}>
+                <input hidden="hidden" name="user_id" value={{user.id}}>
+                <input type="submit" value="Изменить данные">
+            </form>
+            <form action="/posts/delete" method="get">
+                <input hidden="hidden" name="post_id" value={{post.id}}>
+                <input type="submit" value="Удалить публикацию">
+            </form>
+        </th>
+    </tr>
+
+{% endfor %}
+</table>
+<hr>

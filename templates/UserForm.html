@@ -1,0 +1,22 @@
+
+<h1>{{"Добавить нового пользователя" if not user else "Изменяем "+user.username }}</h1>
+
+<style>
+  p {
+    color: 000000;
+    font-weight: normal
+    font-size: medium;
+  }
+  code {
+    font-size: xxx-large;
+    font-weight: bold;
+  }
+</style>
+
+<form method="post">
+    <p>Имя пользователя:<input name="username" value=""></p>
+    <p>Email:<input name="email" value=""></p>
+    <p>Пароль:<input name="password" value=""></p>
+    <input type="submit" value="Подтвердить">
+</form>
+
